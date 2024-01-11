@@ -15,9 +15,9 @@ def zoom_array(lst: Tuple, factor: int = 2) -> List:
 
 array = [12, 72, 91]
 
-zoom_2x = zoom_array(array)
+zoom_2x = zoom_array(tuple(array))  # Convert the list to a tuple
 
-zoom_3x = zoom_array(array, 3)  # Corrected the factor to an integer
+zoom_3x = zoom_array(tuple(array), 3)  # Convert the list to a tuple, and use integer factor
 
 # The script in 102-main.py prints the annotations
 print(zoom_array.__annotations__)
