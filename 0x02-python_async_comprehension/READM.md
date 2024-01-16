@@ -1,0 +1,38 @@
+# 0x02. Python - Async Comprehension
+
+| `Python` | `Back-end` |
+
+![meme](https://s3.amazonaws.com/alx-intranet.hbtn.io/uploads/medias/2019/12/ee85b9f67c384e29525b.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUSBVO6H7D%2F20240116%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20240116T095413Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=9cef945c6cbadca1de4d71873e99898c0f2f37c3dafcb27d6ac8fa4edded4c10)
+
+## Resources
+
+**Read or watch:**
+
+- [`PEP 530 – Asynchronous Comprehensions`](https://intranet.alxswe.com/rltoken/hlwtED-iLsdORSgly8DsyQ)
+- [`What’s New in Python: Asynchronous Comprehensions / Generators`](https://intranet.alxswe.com/rltoken/0OkbObYzCKtO7ZUAxfKvkw)
+- [`Type-hints for generators`](https://intranet.alxswe.com/rltoken/l4Fnno568VbVIn9GvrFVtQ)
+
+## Learning Objectives
+
+At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
+
+- How to write an asynchronous generator
+- How to use async comprehensions
+- How to type-annotate generators
+
+## Requirements
+
+### General
+
+- A `README.md` file, at the root of the folder of the project, is mandatory
+- Allowed editors: `vi`, `vim`, `emacs`
+- All your files will be interpreted/compiled on Ubuntu 18.04 LTS using `python3` (version 3.7)
+- All your files should end with a new line
+- All your files must be executable
+- The length of your files will be tested using `wc`
+- The first line of all your files should be exactly `#!/usr/bin/env python3`
+- Your code should use the `pycodestyle` style (version 2.5.x)
+- All your functions and coroutines must be type-annotated.
+- All your modules should have a documentation (`python3 -c 'print(**import**("my_module").**doc**)'`)
+- All your functions should have a documentation (`python3 -c 'print(**import**("my_module").my_function.**doc**)'`
+- A documentation is not a simple word, it’s a real sentence explaining what’s the purpose of the module, class or method (the length of it will be verified)
