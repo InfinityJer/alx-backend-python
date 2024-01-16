@@ -7,6 +7,7 @@ import asyncio
 import random
 import typing
 
+
 async def async_generator() -> typing.AsyncGenerator[float, None]:
     """
     Coroutine that yields a random number between 0 and 10 after
@@ -14,4 +15,4 @@ async def async_generator() -> typing.AsyncGenerator[float, None]:
     """
     for _ in range(10):
         await asyncio.sleep(1)
-        yield random.uniform(0, 10)
+        yield random.uniform() * 10
