@@ -8,6 +8,7 @@ from parameterized import parameterized, parameterized_class
 from unittest.mock import patch, Mock, call
 from client import GithubOrgClient
 
+
 class TestGithubOrgClient(unittest.TestCase):
 
     @parameterized.expand([
@@ -45,6 +46,7 @@ class TestGithubOrgClient(unittest.TestCase):
         result = GithubOrgClient.has_license(repo, license_key)
         self.assertEqual(result, expected_result)
 
+
 @parameterized_class("org_payload", "repos_payload", "expected_repos", "apache2_repos")
 class TestIntegrationGithubOrgClient(unittest.TestCase):
 
@@ -66,15 +68,20 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
     def tearDown(self):
         self.mock_get.reset_mock()
 
-    def test_public_repos_integration(self):
-        client = GithubOrgClient("test_org")
+    @parameterized.expand([
+        ("test_org", ["repo1", "repo2"]),
+        # Add more test cases as needed
+    ])
+    def test_public_repos_integration(self, org_name, expected_result):
+        client = GithubOrgClient(org_name)
         result = client.public_repos()
-        self.assertEqual(result, self.expected_repos)
+        self.assertEqual(result, expected_result)
 
         self.mock_get.assert_has_calls([
-            call(f"https://api.github.com/orgs/test_org"),
-            call(f"https://api.github.com/orgs/test_org/repos"),
+            call(f"https://api.github.com/orgs/{org_name}"),
+            call(f"https://api.github.com/orgs/{org_name}/repos"),
         ])
+
 
 if __name__ == '__main__':
     unittest.main()
