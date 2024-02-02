@@ -8,6 +8,7 @@ from parameterized import parameterized
 from typing import Dict, Mapping, Sequence, Union
 from utils import access_nested_map, get_json, memoize
 
+
 class TestAccessNestedMap(unittest.TestCase):
     '''Test case for `utils.access_nested_map` function.
     '''
@@ -42,6 +43,7 @@ class TestAccessNestedMap(unittest.TestCase):
         with self.assertRaises(exception):
             access_nested_map(nested_map, path)
 
+
 class TestGetJson(unittest.TestCase):
     '''Tests the `utils.get_json` function.
     '''
@@ -61,6 +63,7 @@ class TestGetJson(unittest.TestCase):
         with patch("requests.get", return_value=Mock(**attrs)) as req_get:
             self.assertEqual(get_json(test_url), test_payload)
             req_get.assert_called_once_with(test_url)
+
 
 class TestMemoize(unittest.TestCase):
     """Tests the `memoize` function."""
