@@ -12,7 +12,6 @@ from requests import HTTPError
 from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
 
-
 class TestGithubOrgClient(unittest.TestCase):
     """Tests for the `GithubOrgClient` class."""
 
@@ -26,15 +25,12 @@ class TestGithubOrgClient(unittest.TestCase):
         mocked_fxn.return_value = MagicMock(return_value=resp)
         gh_org_client = GithubOrgClient(org)
         self.assertEqual(gh_org_client.org(), resp)
-        mocked_fxn.assert_called_once_with
-        (f"https://api.github.com/orgs/{org}")
+        mocked_fxn.assert_called_once_with(f"https://api.github.com/orgs/{org}")
 
     def test_public_repos_url(self) -> None:
         """Test the `_public_repos_url` property."""
-        with patch("client.GithubOrgClient.org",
-                   new_callable=PropertyMock) as mock_org:
-            mock_org.return_value =
-            {'repos_url': "https://api.github.com/users/google/repos"}
+        with patch("client.GithubOrgClient.org", new_callable=PropertyMock) as mock_org:
+            mock_org.return_value = {'repos_url': "https://api.github.com/users/google/repos"}
             self.assertEqual(GithubOrgClient("google")._public_repos_url,
                              "https://api.github.com/users/google/repos")
 
@@ -49,8 +45,7 @@ class TestGithubOrgClient(unittest.TestCase):
             ]
         }
         mock_get_json.return_value = test_payload["repos"]
-        with patch("client.GithubOrgClient._public_repos_url",
-                   new_callable=PropertyMock) as mock_public_repos_url:
+        with patch("client.GithubOrgClient._public_repos_url", new_callable=PropertyMock) as mock_public_repos_url:
             mock_public_repos_url.return_value = test_payload["repos_url"]
             self.assertEqual(GithubOrgClient("google").public_repos(),
                              ["episodes.dart", "kratu"])
@@ -66,7 +61,6 @@ class TestGithubOrgClient(unittest.TestCase):
         gh_org_client = GithubOrgClient("google")
         client_has_licence = gh_org_client.has_license(repo, key)
         self.assertEqual(client_has_licence, expected)
-
 
 @parameterized_class([
     {'org_payload': TEST_PAYLOAD[0][0],
@@ -96,19 +90,16 @@ class TestIntegrationGithubOrgClient(unittest.TestCase):
 
     def test_public_repos(self) -> None:
         """Test the `public_repos` method."""
-        self.assertEqual(GithubOrgClient("google").
-                         public_repos(), self.expected_repos)
+        self.assertEqual(GithubOrgClient("google").public_repos(), self.expected_repos)
 
     def test_public_repos_with_license(self) -> None:
         """Test the `public_repos` method with a license."""
-        self.assertEqual(GithubOrgClient("google").public_repos
-                         (license="apache-2.0"), self.apache2_repos)
+        self.assertEqual(GithubOrgClient("google").public_repos(license="apache-2.0"), self.apache2_repos)
 
     @classmethod
     def tearDownClass(cls) -> None:
         """Remove class fixtures after running all tests."""
         cls.get_patcher.stop()
-
 
 if __name__ == '__main__':
     unittest.main()
